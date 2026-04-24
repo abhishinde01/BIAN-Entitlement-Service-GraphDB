@@ -110,10 +110,13 @@ public sealed class Neo4jGraphService : IGraphService, IAsyncDisposable
     {
         await using var session = _driver.AsyncSession();
 
+        // Deny wins: if any matching entitlement is Deny, that result is returned first.
         const string cypher = """
             MATCH (i:Identity {id: $subject})-[:HAS_ROLE]->(r:PartyRole)-[:HAS_ENTITLEMENT]->(e:Entitlement)
             WHERE e.permissionName = $permissionName AND e.resourceId = $resourceId
-            RETURN e.effect AS effect, e.entitlementId AS entitlementId, r.roleName AS roleName
+            WITH e.effect AS effect, e.entitlementId AS entitlementId, r.roleName AS roleName
+            ORDER BY CASE WHEN effect = 'Deny' THEN 0 ELSE 1 END
+            RETURN effect, entitlementId, roleName
             LIMIT 1
             """;
 
