@@ -1,4 +1,0 @@
-<Solution>
-  <Project Path="EntitlementService.csproj" />
-  <Project Path="EntitlementService.Tests/EntitlementService.Tests.csproj" />
-</Solution>
