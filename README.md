@@ -138,11 +138,7 @@ Add the following block and keep this file out of source control:
 
 > **Note:** `appsettings.Development.json` must be added to `.gitignore` — it contains credentials that should never be committed.
 
-### Production
-
-In production the service uses **System-Assigned Managed Identity** (`ManagedIdentityCredential`). 
-grant the managed identity `Key Vault Secrets User` RBAC role on the vault.
-
+ 
 The `IDriver` singleton is registered in `Program.cs` and injected into `Neo4jGraphService`.
 
 ---
@@ -297,7 +293,7 @@ All five tests instantiate `EntitlementController` directly and assert on `IsAll
 
 
 Demo data
-─────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+─────────────────────────────────────────────────────────────────────────────────────
 
   Alice (CUSTOMER-001) ──HAS_ROLE──► ROLE-TRADER ──HAS_ENTITLEMENT──► ENT-001  execute-trade  PORTFOLIO-001  Allow
                                                  └─HAS_ENTITLEMENT──► ENT-002  view-account   PORTFOLIO-001  Allow
