@@ -18,7 +18,7 @@ public class EntitlementController(IGraphService graphService) : ControllerBase
     /// <remarks>
     /// Identities with no roles assigned are included with an empty roles array.
     /// </remarks>
-    /// <returns>A list of <see cref="IdentityWithRoles"/>.</returns>
+    /// <returns>A list of "IdentityWithRoles".</returns>
     /// <response code="200">List returned successfully.</response>
     [HttpGet("identities")]
     [ProducesResponseType(typeof(IReadOnlyList<IdentityWithRoles>), StatusCodes.Status200OK)]
@@ -37,8 +37,8 @@ public class EntitlementController(IGraphService graphService) : ControllerBase
     /// If no entitlement is found the response indicates access is not granted.
     /// </remarks>
     /// <param name="request">The entitlement check request containing subject, permission, and resource.</param>
-    /// <returns>An <see cref="EntitlementCheckResponse"/> describing whether access is allowed.</returns>
-    /// <response code="200">Entitlement evaluated — inspect <c>IsAllowed</c> for the decision.</response>
+    /// <returns>An "EntitlementCheckResponse" describing whether access is allowed.</returns>
+    /// <response code="200">Entitlement evaluated — inspect IsAllowed for the decision.</response>
     /// <response code="400">Request body is missing or invalid.</response>
     [HttpPost("check")]
     [ProducesResponseType(typeof(EntitlementCheckResponse), StatusCodes.Status200OK)]
